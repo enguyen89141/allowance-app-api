@@ -3,7 +3,7 @@ const app = require('../src/app')
 const bcrypt = require('bcryptjs')
 const helpers = require('./test-helpers')
 
-describe.only('Logins endpoints', function () {
+describe('Logins endpoints', function () {
   let db
 
   const testLogins = helpers.makeLoginsArray()
@@ -33,12 +33,13 @@ describe.only('Logins endpoints', function () {
         )
       )
 
-      const requiredFields = ['username', 'password']
+      const requiredFields = ['username', 'password', 'account']
 
       requiredFields.forEach(field => {
         const registerAttemptBody = {
-          username: 'test username',
-          password: 'test password'
+          username: 'test username1',
+          password: 'test password',
+          account: 0,
         }
 
         it(`responds with 400 required error when '${field}' is missing`, () => {
@@ -56,8 +57,9 @@ describe.only('Logins endpoints', function () {
 
       it(`responds 400 'Password must be longer than 8 characters' when empty password`, () => {
         const loginShortPassword = {
-          username: 'test username',
+          username: 'test username1',
           password: '1234567',
+          account: '0'
         }
         return supertest(app)
           .post('/api/logins')
@@ -67,8 +69,9 @@ describe.only('Logins endpoints', function () {
 
       it(`responds 400 'Password must be less than 72 characters' when long password`, () => {
         const loginLongPassword = {
-          username: 'teset username',
+          username: 'teset username1',
           password: '*'.repeat(73),
+          account: '0'
         }
         return supertest(app)
           .post('/api/logins')
@@ -78,8 +81,9 @@ describe.only('Logins endpoints', function () {
 
       it(`responds 400 error when password starts with spaces`, () => {
         const loginPasswordStartsSpaces = {
-          username: 'test username',
+          username: 'test username1',
           password: ' 1Aa!2Bb@',
+          account: '0'
         }
         return supertest(app)
           .post('/api/logins')
@@ -89,8 +93,9 @@ describe.only('Logins endpoints', function () {
 
       it(`responds 400 error when password ends with spaces`, () => {
         const loginPasswordEndsSpaces = {
-          username: 'test username',
+          username: 'test username1',
           password: '1Aa!2Bb@ ',
+          account: '0'
         }
         return supertest(app)
           .post('/api/logins')
@@ -100,8 +105,9 @@ describe.only('Logins endpoints', function () {
 
       it(`responds 400 error when password isn't complex enough`, () => {
         const loginPasswordNotComplex = {
-          username: 'test username',
+          username: 'test username1',
           password: '11AAaabb',
+          account: '0'
         }
         return supertest(app)
           .post('/api/logins')
@@ -113,6 +119,7 @@ describe.only('Logins endpoints', function () {
         const duplicateLogin = {
           username: testLogin.username,
           password: '11AAaa!!',
+          account: '0'
         }
         return supertest(app)
           .post('/api/logins')
@@ -124,8 +131,9 @@ describe.only('Logins endpoints', function () {
     context(`Happy path`, () => {
       it(`responds 201, serialized user, storing bcryped password`, () => {
         const newLogin = {
-          username: 'test username',
+          username: 'test username2',
           password: '11AAaa!!',
+          account: '0'
         }
         return supertest(app)
           .post('/api/logins')

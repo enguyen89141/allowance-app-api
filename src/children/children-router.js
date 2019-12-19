@@ -1,4 +1,5 @@
 const express = require('express')
+const path = require('path')
 const childrenService = require('./children-service')
 
 const childrenRouter = express.Router()
@@ -6,14 +7,28 @@ const jsonParser = express.json()
 
 childrenRouter
   .route('/')
-  .get((req, res, next) => {
-    childrenService.getAllChildren(
-      req.app.get('db')
+  .post(jsonParser, (req, res, next) => {
+    const { first_name, last_name, email } = req.body
+    const newChild = { first_name, last_name, email }
+    for (const [key, value] of Object.entries(newChild))
+      if (value == null)
+        return res.status(400).json({
+          error: `Missing '${key}' in request body`
+        })
+    newChild.login_id = req.body.login_id
+    newChild.parent_id = req.body.parent_id
+
+    childrenService.insertChild(
+      req.app.get('db'),
+      newChild
     )
-    .then(children => {
-      res.json(children)
-    })
-    .catch(next)
+      .then(child => {
+        res
+          .status(201)
+          .location(path.posix.join(req.originalUrl, `/${child.id}`))
+          .json(childrenService.serializeChild(child))
+      })
+      .catch(next)
   })
   
 module.exports = childrenRouter

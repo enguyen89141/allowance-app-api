@@ -39,6 +39,7 @@ const LoginsService = {
     return {
       id: login.id,
       username: xss(login.username),
+      account: login.account
     }
   }
 }

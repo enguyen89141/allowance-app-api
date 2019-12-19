@@ -7,9 +7,8 @@ const jsonParser = express.json()
 
 loginsRouter
   .post('/', jsonParser, (req, res, next) => {
-    const { username, password } = req.body
-
-    for (const field of ['username', 'password'])
+    const { username, password, account } = req.body
+    for (const field of ['username', 'password', 'account'])
       if(!req.body[field])
       return res.status(400).json({
         error: `Missing '${field}' in request body`
@@ -32,7 +31,8 @@ loginsRouter
             .then(hashedPassword => {
               const newLogin ={
                 username,
-                password: hashedPassword
+                password: hashedPassword,
+                account
               }
               return loginsService.insertLogin(
                 req.app.get('db'),
