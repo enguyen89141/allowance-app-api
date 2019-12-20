@@ -157,13 +157,21 @@ function seedParents(db, parents) {
       ))
 }
 
-
 function seedChildren(db, children) {
   return db.into('children').insert(children)
     .then(() =>
       db.raw(
         `SELECT setval('children_id_seq', ?)`,
         [children[children.length - 1].id],
+      ))
+}
+
+function seedTasks(db, tasks) {
+  return db.into('tasks').insert(tasks)
+    .then(() =>
+      db.raw(
+        `SELECT setval('tasks_id_seq', ?)`,
+        [tasks[tasks.length - 1].id],
       ))
 }
 
@@ -198,5 +206,6 @@ module.exports = {
   seedLogins,
   seedParents,
   seedChildren,
+  seedTasks,
   cleanTables
 }

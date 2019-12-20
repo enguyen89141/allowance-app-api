@@ -39,7 +39,7 @@ describe('Logins endpoints', function () {
         const registerAttemptBody = {
           username: 'test username1',
           password: 'test password',
-          account: 0,
+          account: '0',
         }
 
         it(`responds with 400 required error when '${field}' is missing`, () => {
