@@ -207,5 +207,5 @@ module.exports = {
   seedParents,
   seedChildren,
   seedTasks,
-  cleanTables
+  cleanTables,
 }

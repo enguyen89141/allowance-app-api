@@ -25,6 +25,17 @@ const ChildrenService = {
       parent_id: child.parent_id,
       login_id: child.login_id,
     }
+  },
+  getTasksForChild(db, child_id) {
+    return db
+      .from('tasks')
+      .select(
+        'name',
+        'difficulty',
+        'reward',
+        'current_status'
+      )
+      .where('child_id', child_id)
   }
 }
 

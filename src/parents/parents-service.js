@@ -24,6 +24,14 @@ const ParentsService = {
       email: xss(parent.email),
       login_id: parent.login_id
     }
+  },
+  getChildrenForParent(db, parent_id) {
+    return db
+      .from('children')
+      .select(
+        'first_name',
+        'last_name')
+      .where('parent_id', parent_id)
   }
 }
 

@@ -2,6 +2,8 @@ const express = require('express')
 const path = require('path')
 const childrenService = require('./children-service')
 
+const {requireAuth} = require('../middleware/jwt-auth')
+
 const childrenRouter = express.Router()
 const jsonParser = express.json()
 
@@ -29,6 +31,20 @@ childrenRouter
           .json(childrenService.serializeChild(child))
       })
       .catch(next)
+  })
+
+childrenRouter
+  .route('/:child_id/tasks')
+  .all(requireAuth)
+  .get((req, res, next) => {
+    childrenService.getTasksForChild(
+      req.app.get('db'),
+      req.params.child_id
+    )
+    .then(tasks => {
+      res.json(tasks)
+    })
+    .catch(next)
   })
   
 module.exports = childrenRouter

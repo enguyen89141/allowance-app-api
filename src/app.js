@@ -9,6 +9,7 @@ const loginsRouter = require('./logins/logins-router')
 const tasksRouter = require('./tasks/tasks-router')
 const parentsRouter = require('./parents/parents-router')
 const childrenRouter = require('./children/children-router')
+const authRouter = require('./auth/auth-router')
 
 const app = express()
 
@@ -26,6 +27,7 @@ app.use('/api/logins', loginsRouter)
 app.use('/api/tasks', tasksRouter)
 app.use('/api/children', childrenRouter)
 app.use('/api/parents', parentsRouter)
+app.use('/api/auth', authRouter)
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')

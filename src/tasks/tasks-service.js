@@ -25,7 +25,7 @@ const TasksService = {
       current_status: task.current_status,
       child_id: task.child_id
     }
-  }
+  },
 }
 
 module.exports = TasksService

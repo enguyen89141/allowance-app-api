@@ -7,6 +7,7 @@ describe('Parents endpoints', function () {
 
   const testLogins = helpers.makeLoginsArray()
   const testParents = helpers.makeParentsArray()
+  const testChildren = helpers.makeChildrenArray()
 
   before('make knex instance', () => {
     db = knex({
@@ -21,6 +22,7 @@ describe('Parents endpoints', function () {
   before('clean the table', () => helpers.cleanTables(db))
 
   afterEach('cleanup', () => helpers.cleanTables(db))
+
 
   describe(`POST /api/parents`, () => {
     beforeEach('insert logins', () =>
