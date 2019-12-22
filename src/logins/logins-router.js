@@ -6,7 +6,8 @@ const loginsRouter = express.Router()
 const jsonParser = express.json()
 
 loginsRouter
-  .post('/', jsonParser, (req, res, next) => {
+  .route('/')
+  .post(jsonParser, (req, res, next) => {
     const { username, password, account } = req.body
     for (const field of ['username', 'password', 'account'])
       if(!req.body[field])

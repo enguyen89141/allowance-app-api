@@ -41,7 +41,7 @@ const LoginsService = {
       username: xss(login.username),
       account: login.account
     }
-  }
+  },
 }
 
 module.exports = LoginsService
