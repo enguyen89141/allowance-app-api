@@ -4,7 +4,6 @@ const morgan = require('morgan')
 const cors = require('cors')
 const helmet = require('helmet')
 const { NODE_ENV } = require('./config')
-const { CLIENT_ORIGIN } = require('./config');
 const loginsRouter = require('./logins/logins-router')
 const tasksRouter = require('./tasks/tasks-router')
 const parentsRouter = require('./parents/parents-router')
@@ -19,9 +18,7 @@ const morganOption = (NODE_ENV === 'production')
 
 app.use(morgan(morganOption))
 app.use(helmet())
-app.use(cors({
-    origin: CLIENT_ORIGIN
-}))
+app.use(cors())
 
 app.use('/api/logins', loginsRouter)
 app.use('/api/tasks', tasksRouter)
