@@ -1,9 +1,9 @@
 const xss = require('xss')
 const ChildrenService = {
-  getById(db, id) {
+  getById(db, login_id) {
     return db
       .from('children')
-      .where('children.id', id)
+      .where('children.login_id', login_id)
       .first()
   },
   insertChild(db, newChild) {

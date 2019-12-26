@@ -33,6 +33,19 @@ parentsRouter
       .catch(next)
   })
 
+  parentsRouter 
+    .route('/:login_id')
+    .get((req, res, next) => {
+      parentsService.getByLoginId(
+        req.app.get('db'),
+        req.params.login_id
+      )
+        .then(parent => {
+          res.json(parent)
+        })
+        .catch(next)
+    })
+
 parentsRouter
   .route('/:parent_id/children/')
   .all(requireAuth)

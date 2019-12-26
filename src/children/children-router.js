@@ -33,6 +33,19 @@ childrenRouter
       .catch(next)
   })
 
+  childrenRouter
+    .route('/:login_id')
+    .get((req, res, next) => {
+      childrenService.getById(
+        req.app.get('db'),
+        req.params.login_id
+      )
+      .then(child => {
+        res.json(child)
+      })
+      .catch(next)
+    })
+
 childrenRouter
   .route('/:child_id/tasks')
   .all(requireAuth)
