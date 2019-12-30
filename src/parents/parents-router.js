@@ -48,7 +48,7 @@ parentsRouter
 
 parentsRouter
   .route('/:parent_id/children/')
-  //.all(requireAuth)
+  .all(requireAuth)
   .get((req, res, next) => {
     parentsService.getChildrenForParent(
       req.app.get('db'),
