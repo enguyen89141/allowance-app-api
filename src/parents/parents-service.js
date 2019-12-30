@@ -29,6 +29,7 @@ const ParentsService = {
     return db
       .from('children')
       .select(
+        'id',
         'first_name',
         'last_name')
       .where('parent_id', parent_id)
