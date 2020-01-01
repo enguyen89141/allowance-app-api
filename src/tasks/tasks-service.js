@@ -26,6 +26,18 @@ const TasksService = {
       child_id: task.child_id
     }
   },
+  deleteTask(db, id) {
+    return db
+      .from('tasks')
+      .where({ id })
+      .delete()
+  },
+  updateTask(db, id, newTaskFields) {
+    return db
+      .from('tasks')
+      .where({ id })
+      .update(newTaskFields)
+  }
 }
 
 module.exports = TasksService

@@ -198,6 +198,7 @@ function cleanTables(db) {
         ])))
 }
 
+
 module.exports = {
   makeLoginsArray,
   makeParentsArray,
@@ -208,4 +209,5 @@ module.exports = {
   seedChildren,
   seedTasks,
   cleanTables,
+  makeAuthHeader
 }
