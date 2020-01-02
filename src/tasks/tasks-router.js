@@ -70,7 +70,8 @@ tasksRouter
     const numberOfValues = Object.values(current_status).filter(Boolean).length
         if (numberOfValues === 0) {
             return res.status(400).json({
-                error: { message: `Request body must contain 'current_status'`}
+                
+                error: { message: `${current_status} Request body must contain 'current_status'`}
             })
         }
 
