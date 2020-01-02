@@ -71,7 +71,7 @@ tasksRouter
         if (numberOfValues === 0) {
             return res.status(400).json({
                 
-                error: { message: `${current_status} Request body must contain 'current_status'`}
+                error: { message: `${req.body} Request body must contain 'current_status'`}
             })
         }
 
