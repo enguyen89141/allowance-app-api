@@ -30,6 +30,7 @@ const ChildrenService = {
     return db
       .from('tasks')
       .select(
+        'id',
         'name',
         'difficulty',
         'reward',
