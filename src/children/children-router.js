@@ -27,7 +27,6 @@ childrenRouter
       .then(child => {
         res
           .status(201)
-          .location(path.posix.join(req.originalUrl, `/${child.id}`))
           .json(childrenService.serializeChild(child))
       })
       .catch(next)
