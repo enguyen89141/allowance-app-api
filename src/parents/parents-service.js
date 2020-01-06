@@ -12,9 +12,6 @@ const ParentsService = {
       .into('parents')
       .returning('*')
       .then(([parent]) => parent)
-      .then(parent =>
-        ParentsService.getByLoginId(db, parent.id)
-      )
   },
   serializeParent(parent) {
     return {
