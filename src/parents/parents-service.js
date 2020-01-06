@@ -13,7 +13,7 @@ const ParentsService = {
       .returning('*')
       .then(([parent]) => parent)
       .then(parent =>
-        ParentsService.getById(db, parent.id)
+        ParentsService.getByLoginId(db, parent.id)
       )
   },
   serializeParent(parent) {
