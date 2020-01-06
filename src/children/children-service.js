@@ -18,7 +18,6 @@ const ChildrenService = {
   },
   serializeChild(child) {
     return {
-      id: child.id,
       first_name: xss(child.first_name),
       last_name: xss(child.last_name),
       email: xss(child.email),

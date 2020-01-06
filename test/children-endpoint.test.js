@@ -62,7 +62,6 @@ describe('Children endpoints', function () {
           expect(res.body.email).to.eql(newChild.email)
           expect(res.body.parent_id).to.eql(newChild.parent_id)
           expect(res.body.login_id).to.eql(newChild.login_id)
-          expect(res.headers.location).to.eql(`/api/children/${res.body.id}`)
         })
         .expect(res =>
           db
