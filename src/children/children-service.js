@@ -12,9 +12,6 @@ const ChildrenService = {
       .into('children')
       .returning('*')
       .then(([child]) => child)
-      .then(child =>
-        ChildrenService.getById(db, child.id)
-      )
   },
   serializeChild(child) {
     return {
