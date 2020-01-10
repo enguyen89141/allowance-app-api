@@ -1,11 +1,12 @@
 const bcrypt = require('bcryptjs')
+const jwt = require('jsonwebtoken')
 
 function makeLoginsArray() {
   return [
     {
       id: 1,
       username: 'enguyen89141',
-      password: '$2y$12$6WVz9TO/tw.ribgj4amS3OMZnWFo/W.m8KDhBVEDq9e0pphGBrvZ6',
+      password: 'Password1!',
       account: 0
     },
     {
@@ -141,7 +142,6 @@ function seedLogins(db, logins) {
   }))
   return db.into('logins').insert(preppedLogins)
     .then(() =>
-      // update the auto sequence to stay in sync
       db.raw(
         `SELECT setval('logins_id_seq', ?)`,
         [logins[logins.length - 1].id],
@@ -198,6 +198,13 @@ function cleanTables(db) {
         ])))
 }
 
+function makeAuthHeader(user, secret = process.env.JWT_SECRET) {
+  const token = jwt.sign({ login_id: user.id }, secret, {
+    subject: user.username,
+    algorithm: 'HS256',
+  })
+  return `Bearer ${token}`
+}
 
 module.exports = {
   makeLoginsArray,

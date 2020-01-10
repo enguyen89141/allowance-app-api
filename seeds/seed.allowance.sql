@@ -9,7 +9,7 @@ TRUNCATE
 
 INSERT INTO logins (username, password, account)
 VALUES
-  ('enguyen89141', '$2y$12$6WVz9TO/tw.ribgj4amS3OMZnWFo/W.m8KDhBVEDq9e0pphGBrvZ6', 0),
+  ('enguyen89141', 'Password1!', 0),
   ('chrisluong', '$2y$12$hppv4gsF4k99gypkHz8zL.2/lEQ30erhm5u9VLhF0S6tLWRSWegHW', 1),
   ('parenttwo', '$2y$12$6F267O9B5XQLIvS8TmP5ve5f0Qv5qUM08/I1K3D2dJurHlihc7u3K', 0),
   ('childtwo', '$2y$12$bBAGmTz/8k9XUvA/R/Hghu7nNe2HR94Az4a29EPDAacAQXpIaQw9y', 1),

@@ -14,7 +14,7 @@ describe('Tasks endpoints', function () {
   before('make knex instance', () => {
     db = knex({
       client: 'pg',
-      connection: process.env.TEST_DB_URL,
+      connection: process.env.TEST_DATABASE_URL,
     })
     app.set('db', db)
   })
@@ -57,8 +57,10 @@ describe('Tasks endpoints', function () {
         current_status: 'pending',
         child_id: testChild.id
       }
+      
       return supertest(app)
         .post('/api/tasks')
+        .set('Authorization', helpers.makeAuthHeader(testLogins[0]))
         .send(newTask)
         .expect(201)
         .expect(res => {
@@ -102,6 +104,7 @@ describe('Tasks endpoints', function () {
 
         return supertest(app)
           .post('/api/tasks')
+          .set('Authorization', helpers.makeAuthHeader(testLogins[0]))
           .send(newTask)
           .expect(400, {
             error: `Missing '${field}' in request body`,

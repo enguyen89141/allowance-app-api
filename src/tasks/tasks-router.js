@@ -34,8 +34,7 @@ tasksRouter
 
 tasksRouter
   .route('/:task_id')
-  .all(requireAuth)
-  .all((req, res, next) => {
+  .all(requireAuth, (req, res, next) => {
     tasksService.getById(
         req.app.get('db'),
         req.params.task_id

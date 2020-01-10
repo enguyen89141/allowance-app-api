@@ -12,7 +12,7 @@ describe('Logins endpoints', function () {
   before('make knex instance', () => {
     db = knex({
       client: 'pg',
-      connection: process.env.TEST_DB_URL,
+      connection: process.env.TEST_DATABASE_URL,
     })
     app.set('db', db)
   })
@@ -69,7 +69,7 @@ describe('Logins endpoints', function () {
 
       it(`responds 400 'Password must be less than 72 characters' when long password`, () => {
         const loginLongPassword = {
-          username: 'teset username1',
+          username: 'test username1',
           password: '*'.repeat(73),
           account: '0'
         }
