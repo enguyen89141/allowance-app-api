@@ -1,4 +1,4 @@
-# Allowance APp API
+# Allowance App API
 
 * This is the backend API for my [Allowance App](https://allowance-app.enguyen89141.now.sh/)
 
