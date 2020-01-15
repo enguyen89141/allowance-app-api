@@ -1,26 +1,21 @@
-# Express Boilerplate!
+# Allowance APp API
 
-This is a boilerplate project used for starting new projects!
+* This is the backend API for my [Allowance App](https://allowance-app.enguyen89141.now.sh/)
 
-## Set up
+## Summary
 
-Complete the following steps to start a new project (NEW-PROJECT-NAME):
+* This tested API communicates with my [client side application](https://github.com/enguyen89141/Allowance-App) to populate the tasks, create user accounts for both "parent" and "child" with child receiving an email with the proper sign up link. 
 
-1. Clone this repository to your local machine `git clone BOILERPLATE-URL NEW-PROJECTS-NAME`
-2. `cd` into the cloned repository
-3. Make a fresh start of the git history for this project with `rm -rf .git && git init`
-4. Install the node dependencies `npm install`
-5. Move the example Environment file to `.env` that will be ignored by git and read by the express server `mv example.env .env`
-6. Edit the contents of the `package.json` to use NEW-PROJECT-NAME instead of `"name": "express-boilerplate",`
+* The technology used in this API include Express, Node.js, and PostgreSQL and for the testing I utilized Chai, Jest, and Supertest.
 
-## Scripts
+### Endpoints - These are the main endpoints utilized in my application. Other endpoints are for testing and future functionality. Not all endpoints are accessible as some require authentication. 
 
-Start the application `npm start`
+* Logins: /api/logins <br>
+Accesses the logins created when signing up and the account status for "parent" and "child"
+* Parents: /api/parents <br>
+Accesses the information pertaining to the parent such as name, email, and "children"
+* Children: /api/children <br>
+Accesses the childrens names, emails, and associated parent id.
+* Tasks /api/tasks <br>
+Accesses the lists of tasks which have foreign keys to tie to a specific child/parent
 
-Start nodemon for the application `npm run dev`
-
-Run the tests `npm test`
-
-## Deploying
-
-When your new project is ready for deployment, add a new Heroku application with `heroku create`. This will make a new git remote called "heroku" and you can then `npm run deploy` which will push to this remote's master branch.
